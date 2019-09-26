@@ -6,10 +6,8 @@ dc=""
 dc2=""
 ou=""
 
-
-#bucle principal
-while :
-do
+#funcion dibujamenu para poder poner todas las opciones
+dibujamenu(){
 	clear
 	echo "Pulsa 1 para meter el  uid"
 	echo "Pulsa 2 para meter el  dc"
@@ -19,8 +17,37 @@ do
 	echo "dn: uid="$uid",ou="$ou",dc="$dc",dc="$extension
 	printf '\n'
 	echo "Pulsa 0 para salir"
+}
+
+
+existeFichero(){
+	echo "Comprobando si existe el fichero"
+	sleep 1
+	if [ -e salida.txt ]
+		then
+			echo "El fichero existe"
+		else
+			echo "El fichero no existe"
+	fi
+	echo "Pulsa cualquier tecla para salir sin guardar"
+	read -p "Pulsa S para machacar el fichero anterior" opcionLeidaMachacar
+	if [ opcionLeidaMachacar = "S" ]
+		then
+			echo "Toda una frase" >> salida.txt
+		else
+			echo "No escribo nada"
+	fi
+}
+
+
+
+#bucle principal
+while :
+do
+
+	dibujamenu
 	read -p "Elige un número " eleccion
-case $eleccion in
+	case $eleccion in
 	1)
 		echo "has elegido meter el uid"
 		read -p "introduce el pid " uid
@@ -39,10 +66,9 @@ case $eleccion in
 		echo 4;;
 	0)
 		echo "EXISTE EL .TXT?"
-		sleep 2
-		exit 0
-		echo 0;;
+		existeFichero
+		exit 0;;
 	*)
-		echo "opcion no valida"
+		echo "opcion no valida";;
 esac
 done
