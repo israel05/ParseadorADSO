@@ -3,10 +3,18 @@
 # DEFINITION lee un par de variables locales y crea una frase larga en un fichero
 
 # declaracion de variables globales
-var_uid=piloto1
-var_ou=pilotos
-var_dc1=korriban
-var_dcsufijo=sith
+var_uid=""
+var_ou=""
+var_dc1=""
+var_dcsufijo=""
+
+
+#pido los datos al usuario
+read -p "dime el nombre del uid " var_uid
+read -p "dime la unidad organizativa " var_ou
+read -p "dime el nombre del dominio sin extension " var_dc1
+read -p "dime la extensión del dominio " var_dcsufijo
+
 
 #salida por pantalla
 echo dn: uid=$var_uid,ou=$var_ou,dc=$var_dc1,dc=$var_dcsufijo
